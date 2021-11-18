@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>BlockLib · Rent </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main2.css">
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <!--===============================================================================================-->
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">BlockLib</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url(/static/images/2.jpg);">
+            <div class="wrap-login100">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">BookID</th>
+                        <th scope="col">Book Name</th>
+                        <th scope="col">Author Name</th>
+                    
+                      </tr>
+                    </thead>
+                    
+                    <tbody>
+                        
+                      <tr>
+                        <th scope="row">{{data[0]}}</th>
+                        <td>{{data1[0]}}</td>
+                        <td>{{data2[0]}}</td>
+                        
+                      </tr>
+                
+                      <tr>
+                        <th scope="row">{{data[1]}}</th>
+                        <td>{{data1[1]}}</td>
+                        <td>{{data2[1]}}</td>
+                        
+                      </tr>
+                      <tr>
+                        <th scope="row">{{data[2]}}</th>
+                        <td>{{data1[2]}}</td>
+                        <td>{{data2[2]}}</td>
+                        
+                      </tr>
+                      <tr>
+                        <th scope="row">{{data[3]}}</th>
+                        <td>{{data1[3]}}</td>
+                        <td>{{data2[3]}}</td>
+                        
+                      </tr>
+                      <tr>
+                        <th scope="row">{{data[4]}}</th>
+                        <td>{{data1[4]}}</td>
+                        <td>{{data2[4]}}</td>
+                       
+                      </tr>
+                      
+                    </tbody>
+                   
+                  </table>
+
+
+
+                <form  class="login100-form validate-form" >
+                    <div class="wrap-input100 validate-input m-b-28" data-validate="Username is required">
+                        <span class="label-input100">Username</span>
+                        <input class="input100" type="text" id="username" placeholder="Enter username">
+                        <span class="focus-input100"></span>
+                        
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="BookID  is required">
+                        <span class="label-input100">BookID</span>
+                        <input class="input100" type="text" id="bookid" placeholder="Enter password">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+						
+                       
+                        
+                        
+                        
+					</div>
+            </form>
+            <button class="login100-form-btn ml2" id='save'>
+                Rent Book
+            </button>
+            <form method="POST" action="/success" >
+                <button class="login100-form-btn ml2 " >
+                 Confirm 
+             </button>
+             </form>
+                
+                
+                
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        var contract;
+        var address = "0xbaA548C2C2aE08D39292B648b1a2A6bB01Ca5031";
+        var abi = [
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "_username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "_bookid",
+                        "type": "int256"
+                    }
+                ],
+                "name": "getdata",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "Showdata",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "type": "int256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ]
+            ;
+        $(document).ready(function () {
+            web3 = new Web3(web3.currentProvider);
+            window.web3.currentProvider.enable();
+            contract = new web3.eth.Contract(abi, address);
+
+            $('#save').click(function () {
+                _username = $('#username').val();
+                _bookid = $('#bookid').val();
+                
+                web3.eth.getAccounts().then(function (accounts) {
+                    var acc = accounts[0];
+                    return contract.methods.getdata(_username,_bookid).send({ from: acc });
+                }).then(function (tx) {
+                    console.log(tx);
+                    $('#blockno').html('Block Number : ' + tx.blockNumber);
+                    //$('#blockhash').html('Block Tx Hash : ' + tx.blockHash);
+                    $('#blockhash').html('Block Tx Hash : ' + tx.transactionHash);
+                    $('#Datawrittenby').html('Data Written by : ' + tx.from);
+
+                }).catch(function (tx) {
+                    console.log(tx);
+                })
+
+            })
+        })
+
+    
+
+    </script>
+
+    <!--===============================================================================================-->
+    <script src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/static/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/static/vendor/bootstrap/js/popper.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/static/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/static/vendor/daterangepicker/moment.min.js"></script>
+    <script src="/static/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="/static/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
